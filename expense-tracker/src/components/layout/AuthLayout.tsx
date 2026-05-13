@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { type ReactNode } from "react";
 import { Wallet } from "lucide-react";
 
 interface AuthLayoutProps {

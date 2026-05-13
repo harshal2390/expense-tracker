@@ -55,8 +55,8 @@ function EditExpensePage() {
   if (isLoading) {
     return (
       <div className="flex h-[60vh] items-center justify-center">
-        <div className="rounded-2xl border border-gray-200 bg-white px-6 py-4 shadow-sm">
-          <p className="text-lg font-medium text-gray-600">
+        <div className="rounded-2xl border border-gray-200 bg-white px-6 py-4 shadow-sm dark:border-gray-800 dark:bg-gray-900">
+          <p className="text-lg font-medium text-gray-600 dark:text-gray-300">
             Loading expense...
           </p>
         </div>
@@ -69,7 +69,7 @@ function EditExpensePage() {
   ========================= */
   if (error || !data?.expense) {
     return (
-      <div className="rounded-2xl border border-red-200 bg-red-50 p-6 text-red-500">
+      <div className="rounded-2xl border border-red-200 bg-red-50 p-6 text-red-600 dark:border-red-900 dark:bg-red-950/40 dark:text-red-400">
         Failed to load expense
       </div>
     );
@@ -81,11 +81,11 @@ function EditExpensePage() {
     <div className="mx-auto max-w-3xl space-y-8">
       {/* Header */}
       <div>
-        <h1 className="text-4xl font-black tracking-tight text-gray-900">
+        <h1 className="text-4xl font-black tracking-tight text-gray-900 dark:text-white">
           Edit Expense
         </h1>
 
-        <p className="mt-2 text-gray-500">
+        <p className="mt-2 text-gray-500 dark:text-gray-400">
           Update and manage your expense details
         </p>
       </div>

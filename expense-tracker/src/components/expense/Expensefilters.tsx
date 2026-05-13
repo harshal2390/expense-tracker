@@ -15,11 +15,11 @@ function ExpenseFilters() {
   );
 
   return (
-    <div className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm">
+    <div className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900">
       <div className="flex flex-col gap-6 md:flex-row md:items-end">
         {/* Month Filter */}
         <div className="flex-1">
-          <label className="mb-2 block text-sm font-semibold text-gray-700">
+          <label className="mb-2 block text-sm font-semibold text-gray-700 dark:text-gray-300">
             Select Month
           </label>
 
@@ -27,29 +27,25 @@ function ExpenseFilters() {
             type="month"
             value={selectedMonth}
             onChange={(e) => dispatch(setSelectedMonth(e.target.value))}
-            className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 outline-none transition focus:border-indigo-500 focus:bg-white"
+            className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 text-gray-900 outline-none transition focus:border-indigo-500 focus:bg-white dark:border-gray-700 dark:bg-gray-800 dark:text-white dark:focus:border-indigo-500 dark:focus:bg-gray-900"
           />
         </div>
 
         {/* Category Filter */}
         <div className="flex-1">
-          <label className="mb-2 block text-sm font-semibold text-gray-700">
+          <label className="mb-2 block text-sm font-semibold text-gray-700 dark:text-gray-300">
             Category
           </label>
 
           <select
             value={selectedCategory}
             onChange={(e) => dispatch(setSelectedCategory(e.target.value))}
-            className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 outline-none transition focus:border-indigo-500 focus:bg-white"
+            className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 text-gray-900 outline-none transition focus:border-indigo-500 focus:bg-white dark:border-gray-700 dark:bg-gray-800 dark:text-white dark:focus:border-indigo-500 dark:focus:bg-gray-900"
           >
             <option value="">All Categories</option>
-
             <option value="Food">Food</option>
-
             <option value="Transport">Transport</option>
-
             <option value="Bills">Bills</option>
-
             <option value="Entertainment">Entertainment</option>
           </select>
         </div>

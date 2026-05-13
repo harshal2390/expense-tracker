@@ -25,7 +25,7 @@ function ExpenseForm({
   buttonText,
 }: ExpenseFormProps) {
   return (
-    <div className="rounded-3xl border border-gray-200 bg-white p-8 shadow-sm">
+    <div className="rounded-3xl border border-gray-200 bg-white p-8 shadow-sm dark:border-gray-800 dark:bg-gray-900">
       <Formik
         initialValues={initialValues}
         validationSchema={expenseSchema}
@@ -35,7 +35,7 @@ function ExpenseForm({
           <Form className="space-y-6">
             {/* Title */}
             <div>
-              <label className="mb-2 block text-sm font-semibold text-gray-700">
+              <label className="mb-2 block text-sm font-semibold text-gray-700 dark:text-gray-300">
                 Expense Title
               </label>
 
@@ -43,7 +43,7 @@ function ExpenseForm({
                 type="text"
                 name="title"
                 placeholder="Enter expense title"
-                className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 outline-none transition focus:border-indigo-500 focus:bg-white"
+                className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 text-gray-900 outline-none transition focus:border-indigo-500 focus:bg-white dark:border-gray-700 dark:bg-gray-800 dark:text-white dark:placeholder:text-gray-500 dark:focus:border-indigo-500 dark:focus:bg-gray-900"
               />
 
               <ErrorMessage
@@ -55,7 +55,7 @@ function ExpenseForm({
 
             {/* Amount */}
             <div>
-              <label className="mb-2 block text-sm font-semibold text-gray-700">
+              <label className="mb-2 block text-sm font-semibold text-gray-700 dark:text-gray-300">
                 Amount
               </label>
 
@@ -63,7 +63,7 @@ function ExpenseForm({
                 type="number"
                 name="amount"
                 placeholder="Enter amount"
-                className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 outline-none transition focus:border-indigo-500 focus:bg-white"
+                className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 text-gray-900 outline-none transition focus:border-indigo-500 focus:bg-white dark:border-gray-700 dark:bg-gray-800 dark:text-white dark:placeholder:text-gray-500 dark:focus:border-indigo-500 dark:focus:bg-gray-900"
               />
 
               <ErrorMessage
@@ -75,23 +75,19 @@ function ExpenseForm({
 
             {/* Category */}
             <div>
-              <label className="mb-2 block text-sm font-semibold text-gray-700">
+              <label className="mb-2 block text-sm font-semibold text-gray-700 dark:text-gray-300">
                 Category
               </label>
 
               <Field
                 as="select"
                 name="category"
-                className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 outline-none transition focus:border-indigo-500 focus:bg-white"
+                className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 text-gray-900 outline-none transition focus:border-indigo-500 focus:bg-white dark:border-gray-700 dark:bg-gray-800 dark:text-white dark:focus:border-indigo-500 dark:focus:bg-gray-900"
               >
                 <option value="">Select category</option>
-
                 <option value="Food">Food</option>
-
                 <option value="Transport">Transport</option>
-
                 <option value="Bills">Bills</option>
-
                 <option value="Entertainment">Entertainment</option>
               </Field>
 
@@ -104,14 +100,14 @@ function ExpenseForm({
 
             {/* Date */}
             <div>
-              <label className="mb-2 block text-sm font-semibold text-gray-700">
+              <label className="mb-2 block text-sm font-semibold text-gray-700 dark:text-gray-300">
                 Expense Date
               </label>
 
               <Field
                 type="date"
                 name="date"
-                className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 outline-none transition focus:border-indigo-500 focus:bg-white"
+                className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 text-gray-900 outline-none transition focus:border-indigo-500 focus:bg-white dark:border-gray-700 dark:bg-gray-800 dark:text-white dark:focus:border-indigo-500 dark:focus:bg-gray-900"
               />
 
               <ErrorMessage
@@ -123,7 +119,7 @@ function ExpenseForm({
 
             {/* Note */}
             <div>
-              <label className="mb-2 block text-sm font-semibold text-gray-700">
+              <label className="mb-2 block text-sm font-semibold text-gray-700 dark:text-gray-300">
                 Note
               </label>
 
@@ -132,7 +128,7 @@ function ExpenseForm({
                 rows={4}
                 name="note"
                 placeholder="Optional note"
-                className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 outline-none transition focus:border-indigo-500 focus:bg-white"
+                className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 text-gray-900 outline-none transition focus:border-indigo-500 focus:bg-white dark:border-gray-700 dark:bg-gray-800 dark:text-white dark:placeholder:text-gray-500 dark:focus:border-indigo-500 dark:focus:bg-gray-900"
               />
 
               <ErrorMessage

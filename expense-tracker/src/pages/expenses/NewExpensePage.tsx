@@ -32,11 +32,11 @@ function NewExpensePage() {
     <div className="mx-auto max-w-3xl space-y-8">
       {/* Header */}
       <div>
-        <h1 className="text-4xl font-black tracking-tight text-gray-900">
+        <h1 className="text-4xl font-black tracking-tight text-gray-900 dark:text-white">
           Add New Expense
         </h1>
 
-        <p className="mt-2 text-gray-500">
+        <p className="mt-2 text-gray-500 dark:text-gray-400">
           Record and manage your financial activity
         </p>
       </div>
