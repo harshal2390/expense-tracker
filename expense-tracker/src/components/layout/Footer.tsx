@@ -4,7 +4,7 @@ function Footer() {
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-8 md:flex-row">
         <div>
           <h2 className="text-xl font-bold text-gray-900 dark:text-white">
-            Monetra
+            PennyTrack
           </h2>
 
           <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
@@ -13,7 +13,7 @@ function Footer() {
         </div>
 
         <p className="text-sm text-gray-500 dark:text-gray-400">
-          © 2026 Monetra. All rights reserved.
+          © 2026 PennyTrack. All rights reserved.
         </p>
       </div>
     </footer>
