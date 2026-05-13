@@ -1,8 +1,11 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { Wallet } from "lucide-react";
+import { Moon, Sun } from "lucide-react";
+import { useTheme } from "../../hooks/ThemeContext";
 
 function Navbar() {
   const navigate = useNavigate();
+  const { theme, toggleTheme } = useTheme();
 
   function handleLogout() {
     localStorage.removeItem("user");
@@ -11,7 +14,7 @@ function Navbar() {
   }
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/20 bg-white/80 backdrop-blur-lg">
+    <header className="sticky top-0 z-50 border-b border-white/20 bg-white dark:bg-gray-900 backdrop-blur-lg">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
         {/* Logo */}
         <div className="flex items-center gap-3">
@@ -76,6 +79,13 @@ function Navbar() {
             className="rounded-xl bg-gradient-to-r from-indigo-500 to-violet-500 px-4 py-2 text-sm font-semibold text-white shadow-lg transition hover:scale-105"
           >
             + Add Expense
+          </button>
+
+          <button
+            onClick={toggleTheme}
+            className="flex h-11 w-11 items-center justify-center rounded-2xl border border-gray-200 bg-white dark:bg-gray-900 text-gray-700 transition hover:bg-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800"
+          >
+            {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
           </button>
 
           <button

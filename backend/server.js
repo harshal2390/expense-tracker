@@ -490,3 +490,101 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, function () {
   console.log(`Server running on port ${PORT}`);
 });
+
+/* =========================
+   SEED MOCK EXPENSES
+========================= 
+
+app.post("/api/seed-expenses", async function (req, res) {
+  try {
+    const userId = "6a049ea11be9ff0bafebd758";
+
+    const mockExpenses = [
+      {
+        title: "Lunch",
+        amount: 250,
+        category: "Food",
+        note: "Lunch with friends",
+        date: "2026-05-02",
+        user: userId,
+      },
+
+      {
+        title: "Uber Ride",
+        amount: 420,
+        category: "Transport",
+        note: "Airport travel",
+        date: "2026-05-05",
+        user: userId,
+      },
+
+      {
+        title: "Electricity Bill",
+        amount: 1800,
+        category: "Bills",
+        note: "Monthly electricity payment",
+        date: "2026-05-06",
+        user: userId,
+      },
+
+      {
+        title: "Netflix Subscription",
+        amount: 649,
+        category: "Entertainment",
+        note: "Monthly subscription",
+        date: "2026-05-08",
+        user: userId,
+      },
+
+      {
+        title: "Groceries",
+        amount: 2300,
+        category: "Food",
+        note: "Weekly grocery shopping",
+        date: "2026-05-10",
+        user: userId,
+      },
+
+      {
+        title: "Fuel",
+        amount: 1500,
+        category: "Transport",
+        note: "Petrol refill",
+        date: "2026-05-11",
+        user: userId,
+      },
+
+      {
+        title: "Internet Bill",
+        amount: 999,
+        category: "Bills",
+        note: "WiFi recharge",
+        date: "2026-04-20",
+        user: userId,
+      },
+
+      {
+        title: "Movie Night",
+        amount: 800,
+        category: "Entertainment",
+        note: "Cinema tickets",
+        date: "2026-04-15",
+        user: userId,
+      },
+    ];
+
+    await Expense.insertMany(mockExpenses);
+
+    res.status(201).json({
+      success: true,
+      message: "Mock expenses inserted",
+    });
+  } catch (error) {
+    console.log(error);
+
+    res.status(500).json({
+      success: false,
+      message: "Server error",
+    });
+  }
+}); */
