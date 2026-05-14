@@ -2,8 +2,6 @@ import { Navigate, Route, Routes } from "react-router-dom";
 
 import ProtectedRoute from "./ProtectedRoute";
 
-import ProtectedLayout from "../components/layout/ProtectedLayout";
-
 import HomePage from "../pages/HomePage";
 
 import LoginPage from "../pages/auth/LoginPage";
@@ -28,16 +26,14 @@ function AppRoutes() {
       {/* protected routes */}
 
       <Route element={<ProtectedRoute />}>
-        <Route element={<ProtectedLayout />}>
-          <Route path="/expenses" element={<ExpensesPage />} />
+        <Route path="/expenses" element={<ExpensesPage />} />
 
-          <Route path="/expenses/new" element={<NewExpensePage />} />
+        <Route path="/expenses/new" element={<NewExpensePage />} />
 
-          <Route path="/expenses/:id/edit" element={<EditExpensePage />} />
-          <Route path="/summary" element={<SummaryPage />} />
+        <Route path="/expenses/:id/edit" element={<EditExpensePage />} />
+        <Route path="/summary" element={<SummaryPage />} />
 
-          <Route path="/reports" element={<ReportsPage />} />
-        </Route>
+        <Route path="/reports" element={<ReportsPage />} />
       </Route>
 
       <Route path="*" element={<Navigate to="/" replace />} />
