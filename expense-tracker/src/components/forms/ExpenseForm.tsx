@@ -136,7 +136,7 @@ function ExpenseForm({
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full rounded-2xl bg-gradient-to-r from-indigo-500 to-violet-500 py-3 font-semibold text-white shadow-lg transition hover:scale-[1.01] disabled:opacity-70"
+              className="w-full rounded-2xl bg-linear-to-r from-indigo-500 to-violet-500 py-3 font-semibold text-white shadow-lg transition hover:scale-[1.01] disabled:opacity-70"
             >
               {isLoading ? "Processing..." : buttonText}
             </button>

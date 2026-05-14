@@ -9,17 +9,9 @@ dotenv.config();
 
 const app = express();
 
-/* =========================
-   MIDDLEWARE
-========================= */
-
 app.use(cors());
 
 app.use(express.json());
-
-/* =========================
-   DATABASE CONNECTION
-========================= */
 
 mongoose
   .connect(process.env.MONGO_URI)
@@ -29,10 +21,6 @@ mongoose
   .catch((error) => {
     console.log(error);
   });
-
-/* =========================
-   USER SCHEMA
-========================= */
 
 const userSchema = new mongoose.Schema(
   {
@@ -60,10 +48,6 @@ const userSchema = new mongoose.Schema(
 );
 
 const User = mongoose.model("User", userSchema);
-
-/* =========================
-   EXPENSE SCHEMA
-========================= */
 
 const expenseSchema = new mongoose.Schema(
   {
@@ -107,10 +91,6 @@ const expenseSchema = new mongoose.Schema(
 
 const Expense = mongoose.model("Expense", expenseSchema);
 
-/* =========================
-   JWT AUTH MIDDLEWARE
-========================= */
-
 async function authMiddleware(req, res, next) {
   try {
     const authHeader = req.headers.authorization;
@@ -136,10 +116,6 @@ async function authMiddleware(req, res, next) {
     });
   }
 }
-
-/* =========================
-   AUTH ROUTES
-========================= */
 
 /* REGISTER */
 
@@ -267,10 +243,6 @@ app.post("/api/expenses", authMiddleware, async function (req, res) {
 
 /* GET ALL EXPENSES */
 
-/* =========================
-   GET ALL EXPENSES
-========================= */
-
 app.get("/api/expenses", authMiddleware, async function (req, res) {
   try {
     /* =========================
@@ -279,11 +251,6 @@ app.get("/api/expenses", authMiddleware, async function (req, res) {
 
     const page = Number(req.query.page) || 1;
 
-    /*
-        IMPORTANT:
-        If limit is NOT passed,
-        return ALL expenses.
-      */
     const limit = req.query.limit ? Number(req.query.limit) : null;
 
     const skip = limit ? (page - 1) * limit : 0;
@@ -294,17 +261,9 @@ app.get("/api/expenses", authMiddleware, async function (req, res) {
 
     const month = req.query.month || "";
 
-    /* =========================
-         BASE QUERY
-      ========================= */
-
     const query = {
       user: req.userId,
     };
-
-    /* =========================
-         SEARCH FILTER
-      ========================= */
 
     if (search) {
       query.title = {
@@ -313,17 +272,9 @@ app.get("/api/expenses", authMiddleware, async function (req, res) {
       };
     }
 
-    /* =========================
-         CATEGORY FILTER
-      ========================= */
-
     if (category) {
       query.category = category;
     }
-
-    /* =========================
-         MONTH FILTER
-      ========================= */
 
     if (month) {
       const startDate = new Date(`${month}-01`);
@@ -338,27 +289,15 @@ app.get("/api/expenses", authMiddleware, async function (req, res) {
       };
     }
 
-    /* =========================
-         EXPENSE QUERY
-      ========================= */
-
     let expensesQuery = Expense.find(query).sort({
       date: -1,
     });
 
-    /*
-        Apply pagination ONLY
-        if limit exists.
-      */
     if (limit) {
       expensesQuery = expensesQuery.skip(skip).limit(limit);
     }
 
     const expenses = await expensesQuery;
-
-    /* =========================
-         TOTAL COUNT
-      ========================= */
 
     const totalExpenses = await Expense.countDocuments(query);
 
@@ -388,10 +327,6 @@ app.get("/api/expenses", authMiddleware, async function (req, res) {
 });
 
 /* GET SINGLE EXPENSE */
-
-/* =========================
-   GET SINGLE EXPENSE
-========================= */
 
 app.get("/api/expenses/:id", authMiddleware, async function (req, res) {
   try {
