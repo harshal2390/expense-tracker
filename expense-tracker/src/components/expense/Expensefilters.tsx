@@ -17,7 +17,6 @@ function ExpenseFilters() {
   return (
     <div className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900">
       <div className="flex flex-col gap-6 md:flex-row md:items-end">
-        {/* Month Filter */}
         <div className="flex-1">
           <label className="mb-2 block text-sm font-semibold text-gray-700 dark:text-gray-300">
             Select Month
@@ -31,7 +30,6 @@ function ExpenseFilters() {
           />
         </div>
 
-        {/* Category Filter */}
         <div className="flex-1">
           <label className="mb-2 block text-sm font-semibold text-gray-700 dark:text-gray-300">
             Category

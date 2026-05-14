@@ -19,19 +19,13 @@ import ReportsPage from "../pages/reports/ReportsPage";
 function AppRoutes() {
   return (
     <Routes>
-      {/* =========================
-          PUBLIC ROUTES
-      ========================= */}
-
       <Route path="/" element={<HomePage />} />
 
       <Route path="/login" element={<LoginPage />} />
 
       <Route path="/signup" element={<SignupPage />} />
 
-      {/* =========================
-          PROTECTED ROUTES
-      ========================= */}
+      {/* protected routes */}
 
       <Route element={<ProtectedRoute />}>
         <Route element={<ProtectedLayout />}>
@@ -45,10 +39,6 @@ function AppRoutes() {
           <Route path="/reports" element={<ReportsPage />} />
         </Route>
       </Route>
-
-      {/* =========================
-          FALLBACK
-      ========================= */}
 
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

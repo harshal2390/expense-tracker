@@ -15,7 +15,6 @@ function NewExpensePage() {
     mutationFn: createExpense,
 
     onSuccess: () => {
-      /* IMPORTANT */
       queryClient.invalidateQueries({
         queryKey: ["expenses"],
       });
@@ -30,7 +29,6 @@ function NewExpensePage() {
 
   return (
     <div className="mx-auto max-w-3xl space-y-8">
-      {/* Header */}
       <div>
         <h1 className="text-4xl font-black tracking-tight text-gray-900 dark:text-white">
           Add New Expense
@@ -41,7 +39,6 @@ function NewExpensePage() {
         </p>
       </div>
 
-      {/* Form */}
       <ExpenseForm
         initialValues={{
           title: "",

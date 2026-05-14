@@ -33,7 +33,6 @@ function ExpenseForm({
       >
         {() => (
           <Form className="space-y-6">
-            {/* Title */}
             <div>
               <label className="mb-2 block text-sm font-semibold text-gray-700 dark:text-gray-300">
                 Expense Title
@@ -53,7 +52,6 @@ function ExpenseForm({
               />
             </div>
 
-            {/* Amount */}
             <div>
               <label className="mb-2 block text-sm font-semibold text-gray-700 dark:text-gray-300">
                 Amount
@@ -73,7 +71,6 @@ function ExpenseForm({
               />
             </div>
 
-            {/* Category */}
             <div>
               <label className="mb-2 block text-sm font-semibold text-gray-700 dark:text-gray-300">
                 Category
@@ -98,7 +95,6 @@ function ExpenseForm({
               />
             </div>
 
-            {/* Date */}
             <div>
               <label className="mb-2 block text-sm font-semibold text-gray-700 dark:text-gray-300">
                 Expense Date
@@ -117,7 +113,6 @@ function ExpenseForm({
               />
             </div>
 
-            {/* Note */}
             <div>
               <label className="mb-2 block text-sm font-semibold text-gray-700 dark:text-gray-300">
                 Note
@@ -138,7 +133,6 @@ function ExpenseForm({
               />
             </div>
 
-            {/* Button */}
             <button
               type="submit"
               disabled={isLoading}

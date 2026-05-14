@@ -9,26 +9,15 @@ import { deleteExpense, getExpenses } from "../../services/expenseService";
 import ExpenseFilters from "../../components/expense/ExpenseFilters";
 
 function ExpensesPage() {
-  /* =========================
-     LOCAL UI STATE
-  ========================= */
   const [selectedExpense, setSelectedExpense] = useState<any>(null);
 
-  /* =========================
-     REDUX FILTER STATE
-  ========================= */
+  //redux filter
   const { selectedMonth, selectedCategory } = useSelector(
     (state: RootState) => state.filters,
   );
 
-  /* =========================
-     REACT QUERY CLIENT
-  ========================= */
   const queryClient = useQueryClient();
 
-  /* =========================
-     FETCH EXPENSES
-  ========================= */
   const { data, isLoading, error } = useQuery({
     queryKey: ["expenses", selectedMonth, selectedCategory],
 
@@ -39,9 +28,6 @@ function ExpensesPage() {
       }),
   });
 
-  /* =========================
-     DELETE EXPENSE
-  ========================= */
   const deleteMutation = useMutation({
     mutationFn: deleteExpense,
 
@@ -58,9 +44,6 @@ function ExpensesPage() {
     },
   });
 
-  /* =========================
-     LOADING STATE
-  ========================= */
   if (isLoading) {
     return (
       <div className="flex h-[60vh] items-center justify-center">
@@ -73,9 +56,6 @@ function ExpensesPage() {
     );
   }
 
-  /* =========================
-     ERROR STATE
-  ========================= */
   if (error) {
     return (
       <div className="rounded-2xl border border-red-200 bg-red-50 p-6 text-red-500 dark:border-red-900 dark:bg-red-950/30 dark:text-red-400">
@@ -87,9 +67,6 @@ function ExpensesPage() {
   return (
     <>
       <div className="space-y-8">
-        {/* =========================
-            HEADER
-        ========================= */}
         <div className="flex flex-col justify-between gap-4 lg:flex-row lg:items-center">
           <div>
             <h1 className="text-4xl font-black tracking-tight text-gray-900 dark:text-white">
@@ -101,7 +78,6 @@ function ExpensesPage() {
             </p>
           </div>
 
-          {/* Expense Count */}
           <div className="rounded-3xl border border-indigo-100 bg-gradient-to-r from-indigo-50 to-violet-50 px-6 py-4 shadow-sm dark:border-indigo-900/40 dark:from-gray-900 dark:to-gray-800">
             <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
               Total Expenses
@@ -113,14 +89,8 @@ function ExpensesPage() {
           </div>
         </div>
 
-        {/* =========================
-            FILTERS
-        ========================= */}
         <ExpenseFilters />
 
-        {/* =========================
-            EXPENSE LIST
-        ========================= */}
         <div className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900">
           <div className="mb-6 flex items-center justify-between">
             <div>
@@ -134,7 +104,6 @@ function ExpensesPage() {
             </div>
           </div>
 
-          {/* EMPTY STATE */}
           {data?.expenses?.length === 0 ? (
             <div className="rounded-3xl border border-dashed border-gray-300 py-20 text-center dark:border-gray-700">
               <div className="mx-auto max-w-md">
@@ -149,23 +118,17 @@ function ExpensesPage() {
               </div>
             </div>
           ) : (
-            /* EXPENSE ITEMS */
             <div className="space-y-4">
               {data?.expenses?.map((expense: any) => (
                 <div
                   key={expense._id}
                   className="group flex flex-col gap-4 rounded-3xl border border-gray-100 p-5 transition-all hover:border-indigo-200 hover:shadow-md dark:border-gray-800 dark:hover:border-indigo-700 md:flex-row md:items-center md:justify-between"
                 >
-                  {/* =========================
-                        LEFT SIDE
-                    ========================= */}
                   <div className="flex items-center gap-4">
-                    {/* Category Icon */}
                     <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-500 to-violet-500 text-lg font-bold text-white shadow-lg">
                       {expense.category.charAt(0)}
                     </div>
 
-                    {/* Expense Info */}
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
                         {expense.title}
@@ -189,11 +152,7 @@ function ExpensesPage() {
                     </div>
                   </div>
 
-                  {/* =========================
-                        RIGHT SIDE
-                    ========================= */}
                   <div className="flex flex-col items-end gap-4">
-                    {/* Amount */}
                     <div className="text-right">
                       <p className="text-2xl font-black text-gray-900 dark:text-white">
                         ₹ {expense.amount}
@@ -204,9 +163,8 @@ function ExpensesPage() {
                       </p>
                     </div>
 
-                    {/* Actions */}
                     <div className="flex items-center gap-3">
-                      {/* Edit */}
+                      {/* Editbtn */}
                       <Link
                         to={`/expenses/${expense._id}/edit`}
                         className="flex items-center gap-2 rounded-xl border border-indigo-100 bg-indigo-50 px-4 py-2 text-sm font-medium text-indigo-600 transition hover:bg-indigo-100 dark:border-indigo-900/50 dark:bg-indigo-950/40 dark:text-indigo-300 dark:hover:bg-indigo-900/40"
@@ -215,7 +173,7 @@ function ExpensesPage() {
                         Edit
                       </Link>
 
-                      {/* Delete */}
+                      {/* Deletebtn */}
                       <button
                         onClick={() => setSelectedExpense(expense)}
                         className="flex items-center gap-2 rounded-xl border border-red-100 bg-red-50 px-4 py-2 text-sm font-medium text-red-500 transition hover:bg-red-100 dark:border-red-900/50 dark:bg-red-950/30 dark:text-red-400 dark:hover:bg-red-900/30"
@@ -232,9 +190,7 @@ function ExpensesPage() {
         </div>
       </div>
 
-      {/* =========================
-          DELETE MODAL
-      ========================= */}
+      {/* Delete Modal */}
       {selectedExpense && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4 backdrop-blur-sm">
           <div className="w-full max-w-md rounded-3xl bg-white p-8 shadow-2xl dark:bg-gray-900">
@@ -253,7 +209,6 @@ function ExpensesPage() {
               </p>
             </div>
 
-            {/* Expense Preview */}
             <div className="mt-6 rounded-2xl bg-gray-50 p-4 dark:bg-gray-800">
               <div className="flex items-center justify-between">
                 <div>
@@ -272,9 +227,7 @@ function ExpensesPage() {
               </div>
             </div>
 
-            {/* Actions */}
             <div className="mt-8 flex items-center justify-end gap-3">
-              {/* Cancel */}
               <button
                 onClick={() => setSelectedExpense(null)}
                 className="rounded-2xl border border-gray-200 px-5 py-3 font-medium text-gray-700 transition hover:bg-gray-100 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800"
@@ -282,7 +235,6 @@ function ExpensesPage() {
                 Cancel
               </button>
 
-              {/* Confirm */}
               <button
                 onClick={() => deleteMutation.mutate(selectedExpense._id)}
                 disabled={deleteMutation.isPending}

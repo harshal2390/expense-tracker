@@ -41,7 +41,6 @@ function SignupPage() {
       >
         {() => (
           <Form className="space-y-5">
-            {/* Name */}
             <div>
               <label className="mb-2 block text-sm font-medium text-gray-200">
                 Full Name
@@ -61,7 +60,6 @@ function SignupPage() {
               />
             </div>
 
-            {/* Email */}
             <div>
               <label className="mb-2 block text-sm font-medium text-gray-200">
                 Email Address
@@ -81,7 +79,6 @@ function SignupPage() {
               />
             </div>
 
-            {/* Password */}
             <div>
               <label className="mb-2 block text-sm font-medium text-gray-200">
                 Password
@@ -101,7 +98,6 @@ function SignupPage() {
               />
             </div>
 
-            {/* Submit */}
             <button
               type="submit"
               disabled={registerMutation.isPending}
@@ -112,7 +108,6 @@ function SignupPage() {
                 : "Create Account"}
             </button>
 
-            {/* Footer */}
             <p className="text-center text-sm text-gray-300">
               Already have an account?{" "}
               <Link

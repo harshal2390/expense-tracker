@@ -11,25 +11,16 @@ import { type RootState } from "../../store/store";
 import { getExpenses } from "../../services/expenseService";
 
 function ReportsPage() {
-  /* =========================
-     LOCAL STATE
-  ========================= */
   const [search, setSearch] = useState("");
 
   const [currentPage, setCurrentPage] = useState(1);
 
   const itemsPerPage = 5;
 
-  /* =========================
-     REDUX FILTERS
-  ========================= */
   const { selectedMonth, selectedCategory } = useSelector(
     (state: RootState) => state.filters,
   );
 
-  /* =========================
-     FETCH EXPENSES
-  ========================= */
   const { data, isLoading, error } = useQuery({
     queryKey: ["expenses", selectedMonth, selectedCategory],
 
@@ -40,9 +31,6 @@ function ReportsPage() {
       }),
   });
 
-  /* =========================
-     LOADING
-  ========================= */
   if (isLoading) {
     return (
       <div className="flex h-[60vh] items-center justify-center">
@@ -55,9 +43,6 @@ function ReportsPage() {
     );
   }
 
-  /* =========================
-     ERROR
-  ========================= */
   if (error) {
     return (
       <div className="rounded-2xl border border-red-200 bg-red-50 p-6 text-red-500 dark:border-red-900 dark:bg-red-950/30 dark:text-red-400">
@@ -68,9 +53,6 @@ function ReportsPage() {
 
   const expenses = data?.expenses || [];
 
-  /* =========================
-     SEARCH FILTER
-  ========================= */
   const filteredExpenses = expenses.filter((expense: any) => {
     const searchText = search.toLowerCase();
 
@@ -81,9 +63,6 @@ function ReportsPage() {
     );
   });
 
-  /* =========================
-     PAGINATION
-  ========================= */
   const totalPages = Math.ceil(filteredExpenses.length / itemsPerPage);
 
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -95,9 +74,6 @@ function ReportsPage() {
 
   return (
     <div className="space-y-8">
-      {/* =========================
-          HEADER
-      ========================= */}
       <div className="flex flex-col justify-between gap-4 xl:flex-row xl:items-center">
         <div>
           <h1 className="text-4xl font-black tracking-tight text-gray-900 dark:text-white">
@@ -118,9 +94,6 @@ function ReportsPage() {
         </div>
       </div>
 
-      {/* =========================
-          SEARCH
-      ========================= */}
       <div className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900">
         <div className="relative">
           <Search
@@ -142,11 +115,7 @@ function ReportsPage() {
         </div>
       </div>
 
-      {/* =========================
-          REPORT TABLE
-      ========================= */}
       <div className="overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-sm dark:border-gray-800 dark:bg-gray-900">
-        {/* Table Header */}
         <div className="border-b border-gray-100 px-6 py-5 dark:border-gray-800">
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
             Expense Records
@@ -157,7 +126,6 @@ function ReportsPage() {
           </p>
         </div>
 
-        {/* Empty State */}
         {paginatedExpenses.length === 0 ? (
           <div className="py-20 text-center">
             <h3 className="text-2xl font-bold text-gray-800 dark:text-white">
@@ -244,7 +212,6 @@ function ReportsPage() {
               </p>
 
               <div className="flex items-center gap-3">
-                {/* Prev */}
                 <button
                   onClick={() =>
                     setCurrentPage((prev) => Math.max(prev - 1, 1))
@@ -256,12 +223,10 @@ function ReportsPage() {
                   Prev
                 </button>
 
-                {/* Page */}
                 <div className="rounded-xl bg-indigo-50 px-4 py-2 text-sm font-semibold text-indigo-600 dark:bg-indigo-950/40 dark:text-indigo-300">
                   Page {currentPage} of {totalPages || 1}
                 </div>
 
-                {/* Next */}
                 <button
                   onClick={() =>
                     setCurrentPage((prev) => Math.min(prev + 1, totalPages))

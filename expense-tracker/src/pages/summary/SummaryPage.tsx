@@ -36,9 +36,6 @@ function SummaryPage() {
     (state: RootState) => state.filters,
   );
 
-  /* =========================
-     FETCH EXPENSES
-  ========================= */
   const { data, isLoading, error } = useQuery({
     queryKey: ["expenses", selectedMonth, selectedCategory],
 
@@ -49,9 +46,6 @@ function SummaryPage() {
       }),
   });
 
-  /* =========================
-     LOADING
-  ========================= */
   if (isLoading) {
     return (
       <div className="flex h-[60vh] items-center justify-center">
@@ -64,9 +58,6 @@ function SummaryPage() {
     );
   }
 
-  /* =========================
-     ERROR
-  ========================= */
   if (error) {
     return (
       <div className="rounded-2xl border border-red-200 bg-red-50 p-6 text-red-500 dark:border-red-900 dark:bg-red-950/30 dark:text-red-400">
@@ -77,27 +68,19 @@ function SummaryPage() {
 
   const expenses = data?.expenses || [];
 
-  /* =========================
-     CALCULATIONS
-  ========================= */
-
   /* Total Spending */
   const totalSpending = expenses.reduce(
     (total: number, expense: any) => total + expense.amount,
     0,
   );
 
-  /* Average Expense */
   const averageExpense =
     expenses.length > 0 ? totalSpending / expenses.length : 0;
 
-  /* Highest Expense */
   const highestExpense = [...expenses].sort((a, b) => b.amount - a.amount)[0];
 
-  /* Lowest Expense */
   const lowestExpense = [...expenses].sort((a, b) => a.amount - b.amount)[0];
 
-  /* Category Totals */
   const categoryTotals: Record<string, number> = {};
 
   expenses.forEach((expense: any) => {
@@ -108,12 +91,10 @@ function SummaryPage() {
     }
   });
 
-  /* Highest Category */
   const highestCategory = Object.entries(categoryTotals).sort(
     (a, b) => b[1] - a[1],
   )[0];
 
-  /* Chart Colors */
   const chartColors = [
     "#6366f1",
     "#8b5cf6",
@@ -123,7 +104,6 @@ function SummaryPage() {
     "#ef4444",
   ];
 
-  /* Doughnut Chart */
   const doughnutData = {
     labels: Object.keys(categoryTotals),
 
@@ -180,9 +160,6 @@ function SummaryPage() {
 
   return (
     <div className="space-y-8">
-      {/* =========================
-          HEADER
-      ========================= */}
       <div className="flex flex-col justify-between gap-4 xl:flex-row xl:items-center">
         <div>
           <h1 className="text-4xl font-black tracking-tight text-gray-900 dark:text-white">
@@ -203,11 +180,7 @@ function SummaryPage() {
         </div>
       </div>
 
-      {/* =========================
-          ANALYTICS CARDS
-      ========================= */}
       <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-        {/* Total Expenses */}
         <div className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900">
           <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
             Total Expenses
@@ -218,7 +191,6 @@ function SummaryPage() {
           </h2>
         </div>
 
-        {/* Average */}
         <div className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900">
           <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
             Average Expense
@@ -229,7 +201,6 @@ function SummaryPage() {
           </h2>
         </div>
 
-        {/* Top Category */}
         <div className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900">
           <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
             Top Category
@@ -240,7 +211,6 @@ function SummaryPage() {
           </h2>
         </div>
 
-        {/* Highest Expense */}
         <div className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900">
           <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
             Highest Expense
@@ -251,10 +221,7 @@ function SummaryPage() {
           </h2>
         </div>
       </div>
-
-      {/* =========================
-          CHARTS
-      ========================= */}
+      {/* charts */}
       <div className="grid gap-8 xl:grid-cols-2">
         {/* Doughnut */}
         <div className="rounded-3xl border border-gray-200 bg-white p-8 shadow-sm dark:border-gray-800 dark:bg-gray-900">
@@ -289,9 +256,7 @@ function SummaryPage() {
         </div>
       </div>
 
-      {/* =========================
-          LINE CHART
-      ========================= */}
+      {/* Line Chart */}
       <div className="rounded-3xl border border-gray-200 bg-white p-8 shadow-sm dark:border-gray-800 dark:bg-gray-900">
         <div className="mb-6">
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
@@ -306,11 +271,7 @@ function SummaryPage() {
         <Line data={lineData} />
       </div>
 
-      {/* =========================
-          INSIGHTS SECTION
-      ========================= */}
       <div className="grid gap-8 xl:grid-cols-2">
-        {/* Spending Insights */}
         <div className="rounded-3xl border border-gray-200 bg-white p-8 shadow-sm dark:border-gray-800 dark:bg-gray-900">
           <div className="mb-6">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
@@ -355,7 +316,6 @@ function SummaryPage() {
           </div>
         </div>
 
-        {/* Recent Expenses */}
         <div className="rounded-3xl border border-gray-200 bg-white p-8 shadow-sm dark:border-gray-800 dark:bg-gray-900">
           <div className="mb-6">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white">

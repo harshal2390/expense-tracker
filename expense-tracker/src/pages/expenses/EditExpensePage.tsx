@@ -13,9 +13,7 @@ function EditExpensePage() {
 
   const queryClient = useQueryClient();
 
-  /* =========================
-     FETCH SINGLE EXPENSE
-  ========================= */
+  // fetch single expense
   const { data, isLoading, error } = useQuery({
     queryKey: ["expense", id],
 
@@ -24,19 +22,16 @@ function EditExpensePage() {
     enabled: !!id,
   });
 
-  /* =========================
-     UPDATE MUTATION
-  ========================= */
+  //  Update expense
+
   const updateMutation = useMutation({
     mutationFn: (values: any) => updateExpense(id as string, values),
 
     onSuccess: () => {
-      /* Refetch expense list */
       queryClient.invalidateQueries({
         queryKey: ["expenses"],
       });
 
-      /* Refetch single expense */
       queryClient.invalidateQueries({
         queryKey: ["expense", id],
       });
@@ -49,9 +44,6 @@ function EditExpensePage() {
     },
   });
 
-  /* =========================
-     LOADING
-  ========================= */
   if (isLoading) {
     return (
       <div className="flex h-[60vh] items-center justify-center">
@@ -64,9 +56,6 @@ function EditExpensePage() {
     );
   }
 
-  /* =========================
-     ERROR
-  ========================= */
   if (error || !data?.expense) {
     return (
       <div className="rounded-2xl border border-red-200 bg-red-50 p-6 text-red-600 dark:border-red-900 dark:bg-red-950/40 dark:text-red-400">
@@ -79,7 +68,6 @@ function EditExpensePage() {
 
   return (
     <div className="mx-auto max-w-3xl space-y-8">
-      {/* Header */}
       <div>
         <h1 className="text-4xl font-black tracking-tight text-gray-900 dark:text-white">
           Edit Expense
@@ -90,7 +78,6 @@ function EditExpensePage() {
         </p>
       </div>
 
-      {/* Form */}
       <ExpenseForm
         initialValues={{
           title: expense.title || "",

@@ -42,7 +42,6 @@ function LoginPage() {
       >
         {() => (
           <Form className="space-y-5">
-            {/* Email */}
             <div>
               <label className="mb-2 block text-sm font-medium text-gray-200">
                 Email Address
@@ -62,7 +61,6 @@ function LoginPage() {
               />
             </div>
 
-            {/* Password */}
             <div>
               <label className="mb-2 block text-sm font-medium text-gray-200">
                 Password
@@ -82,7 +80,6 @@ function LoginPage() {
               />
             </div>
 
-            {/* Submit */}
             <button
               type="submit"
               disabled={loginMutation.isPending}

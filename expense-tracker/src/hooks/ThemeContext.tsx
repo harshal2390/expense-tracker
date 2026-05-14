@@ -9,18 +9,13 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 function ThemeProvider({ children }: { children: React.ReactNode }) {
-  /* =========================
-     INITIAL THEME
-  ========================= */
   const [theme, setTheme] = useState<"light" | "dark">(() => {
     const savedTheme = localStorage.getItem("theme");
 
     return savedTheme === "dark" ? "dark" : "light";
   });
 
-  /* =========================
-     APPLY THEME
-  ========================= */
+  // apply theme
   useEffect(() => {
     const root = window.document.documentElement;
 
@@ -33,9 +28,6 @@ function ThemeProvider({ children }: { children: React.ReactNode }) {
     localStorage.setItem("theme", theme);
   }, [theme]);
 
-  /* =========================
-     TOGGLE THEME
-  ========================= */
   function toggleTheme() {
     setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
   }
@@ -52,10 +44,7 @@ function ThemeProvider({ children }: { children: React.ReactNode }) {
   );
 }
 
-/* =========================
-   CUSTOM HOOK
-========================= */
-
+// custom hook
 function useTheme() {
   const context = useContext(ThemeContext);
 
